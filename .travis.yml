@@ -3,9 +3,17 @@ language: node_js
 node_js:
   - '6'
   - '8'
+cache:
+  yarn: true
+  directories:
+    - node_modules
 install:
   - npm i npminstall && npminstall
 script:
   - npm run ci
+  - yarn lint
+  - yarn test
+  - yarn build
 after_script:
   - npminstall codecov && codecov
+  - yarn codecov
